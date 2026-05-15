@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import InvitationCard from "../components/InvitationCard";
+import InvitationCard from "../components/Invitationcard";
 
 // ─── Gold Divider (shared accent) ───────────────────────────────────────────
 function GoldRule() {

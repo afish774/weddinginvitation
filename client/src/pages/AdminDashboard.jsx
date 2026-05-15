@@ -141,16 +141,41 @@ export default function AdminDashboard() {
   const [filterStatus, setFilterStatus] = useState("all");
   const [loadingGuests, setLoadingGuests] = useState(true);
 
+  const [fetchError, setFetchError] = useState(null);
+
   const fetchData = useCallback(async () => {
+    setFetchError(null);
     try {
       const [gRes, sRes] = await Promise.all([
         fetch("/api/guests"),
         fetch("/api/guests/stats/summary"),
       ]);
-      setGuests(await gRes.json());
-      setStats(await sRes.json());
+
+      // ── Guests: validate response ──
+      if (!gRes.ok) {
+        const errBody = await gRes.text();
+        console.error(`[API] /api/guests returned ${gRes.status}:`, errBody);
+        setGuests([]);
+        setFetchError(`Backend error ${gRes.status} on /api/guests`);
+      } else {
+        const gData = await gRes.json();
+        setGuests(Array.isArray(gData) ? gData : []);
+      }
+
+      // ── Stats: validate response ──
+      if (!sRes.ok) {
+        const errBody = await sRes.text();
+        console.error(`[API] /api/guests/stats/summary returned ${sRes.status}:`, errBody);
+        setStats(null);
+      } else {
+        const sData = await sRes.json();
+        setStats(sData && typeof sData === "object" ? sData : null);
+      }
     } catch (e) {
-      console.error(e);
+      console.error("[API] Network or fetch error:", e);
+      setGuests([]);
+      setStats(null);
+      setFetchError("Cannot reach the server. Check your connection.");
     } finally {
       setLoadingGuests(false);
     }
@@ -251,6 +276,20 @@ export default function AdminDashboard() {
       </div>
 
       <div className="max-w-5xl mx-auto px-4 py-6 space-y-6">
+
+        {/* ── Error Banner ── */}
+        {fetchError && (
+          <div className="px-5 py-4 font-body text-center"
+            style={{
+              backgroundColor: "rgba(154,74,58,0.08)",
+              border: "1px solid rgba(154,74,58,0.25)",
+              color: "#9A4A3A",
+              fontSize: "0.75rem",
+              letterSpacing: "0.05em",
+            }}>
+            ⚠ {fetchError}
+          </div>
+        )}
 
         {/* ── Stats Row ── */}
         {stats && (

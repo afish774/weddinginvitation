@@ -45,6 +45,18 @@ app.get("/api/health", (req, res) =>
   res.json({ status: "OK", timestamp: new Date() })
 );
 
+// ─── Global Error Handler (surfaces errors in Vercel Runtime Logs) ───────────
+app.use((err, req, res, next) => {
+  console.error("═══ UNHANDLED EXPRESS ERROR ═══");
+  console.error("Route:", req.method, req.originalUrl);
+  console.error("Error:", err.message);
+  console.error("Stack:", err.stack);
+  res.status(500).json({
+    error: "Internal Server Error",
+    message: process.env.NODE_ENV === "production" ? "Something went wrong" : err.message,
+  });
+});
+
 // ─── Local Development: listen on PORT ───────────────────────────────────────
 if (process.env.NODE_ENV !== "production") {
   connectDB().then(() => {

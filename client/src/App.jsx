@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import GeneralInvite from "./pages/GeneralInvite";
 import SpecificInvite from "./pages/SpecificInvite";
-import RsvpConfirmation from "./pages/RsvpConfirmation";
+import RsvpConfirmation from "./pages/RsvpConfirmation.jsx";
 import AdminDashboard from "./pages/AdminDashboard";
 
 export default function App() {

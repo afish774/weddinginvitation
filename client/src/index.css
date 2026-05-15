@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Amiri&family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-display: "Cinzel", serif;
+    --font-script: "Alex Brush", cursive;
+    --font-body: "Montserrat", sans-serif;
+    --font-arabic: "Amiri", serif;
+    --color-gray-200: rgba(0, 0, 0, 0.08);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GLOBAL RESETS & OVERRIDES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+html, body, #root {
+    background-color: #FDFBF7 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+}
+
+/* Override Tailwind v4 default border color */
+:root {
+    --default-border-color: rgba(0, 0, 0, 0.1);
+}
+
+:where(*, *::before, *::after) {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INVITATION CARD – Pixel-perfect recreation of the reference design
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.invitation-page {
+    position: relative;
+    width: 100vw;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #FDFBF7;
+    overflow: hidden;
+    font-family: "Montserrat", sans-serif;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 2rem);
+}
+
+/* ── Floral Images ── */
+.floral-corner {
+    position: absolute;
+    pointer-events: none;
+    z-index: 6;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.floral-top-right {
+    top: clamp(-40px, -4vw, -20px);
+    right: clamp(-40px, -4vw, -20px);
+    width: clamp(180px, 40vw, 340px);
+    height: clamp(180px, 40vw, 340px);
+}
+
+.floral-bottom-left {
+    bottom: clamp(-40px, -4vw, -20px);
+    left: clamp(-40px, -4vw, -20px);
+    width: clamp(180px, 40vw, 340px);
+    height: clamp(180px, 40vw, 340px);
+}
+
+/* ── Gold Frame ── */
+.gold-frame {
+    position: absolute;
+    top: clamp(12px, 3vw, 28px);
+    left: clamp(12px, 3vw, 28px);
+    right: clamp(12px, 3vw, 28px);
+    bottom: clamp(12px, 3vw, 28px);
+    pointer-events: none;
+    z-index: 3;
+    border: 0.5px solid rgba(197, 160, 108, 0.35);
+}
+
+.corner-ornament {
+    position: absolute;
+    width: clamp(35px, 6vw, 60px);
+    height: clamp(35px, 6vw, 60px);
+}
+
+.corner-tl { top: -1px; left: -1px; }
+.corner-tr { top: -1px; right: -1px; }
+.corner-bl { bottom: -1px; left: -1px; }
+.corner-br { bottom: -1px; right: -1px; }
+
+/* ── Card Content ── */
+.card-content {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    padding: 0 clamp(12px, 3vw, 24px);
+}
+
+/* ── 1. SAVE THE DATE ── */
+.save-the-date {
+    font-family: "Cinzel", serif;
+    font-weight: 400;
+    font-size: clamp(9px, 1.5vw, 12px);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #3A3A3A;
+    margin-bottom: clamp(1.5rem, 4vw, 3rem);
+}
+
+/* ── 2. NAMES SECTION ── */
+.names-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+}
+
+.name-row {
+    display: flex;
+    align-items: baseline;
+    gap: clamp(4px, 0.8vw, 8px);
+}
+
+.name-row-first {
+    margin-right: clamp(1rem, 5vw, 4rem);
+    margin-bottom: -0.5rem;
+}
+
+.name-row-second {
+    margin-left: clamp(1.5rem, 6vw, 5rem);
+    margin-top: -0.5rem;
+}
+
+.name-first {
+    font-family: "Alex Brush", cursive;
+    font-size: clamp(3.5rem, 12vw, 7rem);
+    font-weight: 400;
+    color: #1A1A1A;
+    line-height: 0.75;
+    margin: 0;
+    padding: 0;
+}
+
+.name-last {
+    font-family: "Alex Brush", cursive;
+    font-size: clamp(1.1rem, 3vw, 1.9rem);
+    color: #555;
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.ampersand {
+    font-family: "Alex Brush", cursive;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #888;
+    line-height: 1;
+    margin: 0.6rem 0;
+}
+
+/* ── 3. DIVIDER ── */
+.divider-section {
+    margin: clamp(1rem, 2.5vw, 1.5rem) 0 clamp(1.5rem, 3vw, 2rem) 0;
+}
+
+/* ── 4. INVITATION TEXT ── */
+.invitation-text {
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.together-line {
+    font-family: "Cinzel", serif;
+    font-weight: 500;
+    font-size: clamp(8px, 1.3vw, 11px);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.invite-line {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: clamp(7px, 1.1vw, 10px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #444;
+    line-height: 2;
+}
+
+/* ── 5. DATE BLOCK ── */
+.date-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+    width: 100%;
+    max-width: clamp(220px, 50vw, 320px);
+}
+
+.date-year {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: clamp(8px, 1.3vw, 11px);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: clamp(8px, 1.5vw, 12px);
+}
+
+.date-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0;
+}
+
+.date-day-label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #2A2A2A;
+    border-bottom: 1px solid #2A2A2A;
+    padding: clamp(6px, 1vw, 10px) 0;
+}
+
+.date-day-label span {
+    font-family: "Cinzel", serif;
+    font-weight: 500;
+    font-size: clamp(9px, 1.4vw, 12px);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #2A2A2A;
+}
+
+.date-number {
+    font-family: "Cinzel", serif;
+    font-weight: 400;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    color: #1A1A1A;
+    line-height: 1;
+    padding: 0 clamp(8px, 2vw, 16px);
+}
+
+.date-time {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: clamp(8px, 1.3vw, 11px);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #333;
+    margin-top: clamp(8px, 1.5vw, 12px);
+}
+
+/* ── 6. VENUE ── */
+.venue-text {
+    font-family: "Cinzel", serif;
+    font-weight: 500;
+    font-size: clamp(9px, 1.4vw, 12px);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+/* ── 7. RECEPTION ── */
+.reception-text {
+    font-family: "Alex Brush", cursive;
+    font-size: clamp(1.6rem, 4.5vw, 2.6rem);
+    color: #444;
+    font-weight: 400;
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* ── 8. BOTTOM FLOURISH ── */
+.bottom-flourish {
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* ── 9. RSVP SECTION ── */
+.rsvp-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.rsvp-message {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(7px, 1vw, 9px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.rsvp-buttons {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    max-width: clamp(220px, 50vw, 280px);
+}
+
+.rsvp-btn {
+    flex: 1;
+    padding: clamp(8px, 1.5vw, 12px) 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(7px, 1vw, 9px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.rsvp-accept {
+    background-color: #2A3A2E;
+    color: #fff;
+}
+
+.rsvp-accept:hover {
+    background-color: #3B5040;
+}
+
+.rsvp-decline {
+    background-color: transparent;
+    color: #2A3A2E;
+    border: 1px solid rgba(42, 58, 46, 0.35);
+}
+
+.rsvp-decline:hover {
+    border-color: #2A3A2E;
+}

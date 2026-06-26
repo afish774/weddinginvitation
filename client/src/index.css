@@ -276,6 +276,103 @@ html, body, #root {
     margin-bottom: clamp(1.5rem, 3vw, 2rem);
 }
 
+/* ── 6b. LOCATION QR CODE ── */
+.location-motion-wrap {
+    width: 100%;
+    max-width: clamp(240px, 55vw, 340px);
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.location-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(1rem, 3vw, 1.8rem) clamp(0.8rem, 2vw, 1.5rem);
+    border: 0.5px solid rgba(197, 160, 108, 0.35);
+    background-color: rgba(253, 251, 247, 0.8);
+}
+
+.location-title {
+    font-family: "Cinzel", serif;
+    font-weight: 500;
+    font-size: clamp(8px, 1.2vw, 11px);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #3A3A3A;
+    margin-bottom: clamp(6px, 1vw, 10px);
+}
+
+.location-qr-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: clamp(10px, 2vw, 16px) 0;
+}
+
+.location-qr-svg {
+    padding: 6px;
+    border: 0.5px solid rgba(197, 160, 108, 0.3);
+    background-color: #FDFBF7;
+}
+
+.location-qr-label {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: clamp(5px, 0.8vw, 7px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #999;
+    margin-top: 6px;
+}
+
+.location-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.location-venue-name {
+    font-family: "Cinzel", serif;
+    font-weight: 500;
+    font-size: clamp(8px, 1.2vw, 11px);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #2A2A2A;
+    line-height: 1.6;
+}
+
+.location-venue-area {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: clamp(7px, 1vw, 9px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #666;
+    margin-top: 2px;
+    margin-bottom: clamp(8px, 1.5vw, 14px);
+}
+
+.location-directions-btn {
+    display: inline-block;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(6px, 0.9vw, 8px);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #FDFBF7;
+    background-color: #2A3A2E;
+    padding: clamp(6px, 1vw, 8px) clamp(12px, 2vw, 18px);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.location-directions-btn:hover {
+    background-color: #3B5040;
+}
+
 /* ── 7. RECEPTION ── */
 .reception-text {
     font-family: "Alex Brush", cursive;

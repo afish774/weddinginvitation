@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { QRCodeSVG } from "qrcode.react";
 
 // ─── Corner Ornament SVG (Top-Left style) ────────────────────────────────────
 function CornerOrnament({ className = "", style = {} }) {
@@ -57,6 +58,44 @@ function BottomFlourish() {
       <path d="M77 12 L 80 8 L 83 12 L 80 16 Z" stroke="#C5A06C" strokeWidth="0.4" fill="none" />
       <circle cx="80" cy="12" r="1" fill="#C5A06C" />
     </svg>
+  );
+}
+
+// ─── Location Section with QR Code ───────────────────────────────────────────
+const MAPS_LINK = "https://maps.app.goo.gl/KSsfLryaA3v8hwpY7";
+
+function LocationSection() {
+  return (
+    <div className="location-section">
+      <p className="location-title">Venue Location</p>
+      <GoldDivider width={140} />
+
+      <div className="location-qr-card">
+        <QRCodeSVG
+          value={MAPS_LINK}
+          size={90}
+          level="M"
+          bgColor="#FDFBF7"
+          fgColor="#2A2A2A"
+          className="location-qr-svg"
+        />
+        <p className="location-qr-label">Scan for Directions</p>
+      </div>
+
+      <div className="location-details">
+        <p className="location-venue-name">Namas International</p>
+        <p className="location-venue-name">Convention Centre</p>
+        <p className="location-venue-area">Thozhiyoor</p>
+        <a
+          href={MAPS_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="location-directions-btn"
+        >
+          Get Directions
+        </a>
+      </div>
+    </div>
   );
 }
 
@@ -221,6 +260,11 @@ export default function InvitationCard({ guestName = null, guestId = null, onDec
         <motion.p variants={fadeUp} className="venue-text">
           Namas international convention centre, Thozhiyoor
         </motion.p>
+
+        {/* 6b. Location Map & QR Code */}
+        <motion.div variants={fadeUp} className="location-motion-wrap">
+          <LocationSection />
+        </motion.div>
 
         {/* 7. Reception */}
         <motion.p variants={fadeUp} className="reception-text">
